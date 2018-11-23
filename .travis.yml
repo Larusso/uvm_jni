@@ -1,0 +1,35 @@
+dist: trusty
+language: rust
+services: docker
+sudo: required
+
+matrix:
+  include:
+    - name: "x86_64-apple-darwin"
+      env: TARGET=x86_64-apple-darwin
+      os: osx
+    - name: "x86_64-pc-windows-msvc"
+      env: "TARGET=x86_64-pc-windows-msvc"
+      os: windows
+    - name: "x86_64-apple-darwin-nightly"
+      env: TARGET=x86_64-apple-darwin
+      os: osx
+      rust: nightly
+    - name: "x86_64-pc-windows-msvc-nightly"
+      env: "TARGET=x86_64-pc-windows-msvc"
+      os: windows
+      rust: nightly
+
+before_install:
+  - set -e
+  - rustup self update
+
+before_script:
+  - rustup component add clippy-preview
+  - rustup component add rustfmt-preview
+cache: cargo
+before_cache:
+  - chmod -R a+r $HOME/.cargo
+
+script:
+  - bash ci/script.sh

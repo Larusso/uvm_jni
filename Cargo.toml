@@ -1,0 +1,21 @@
+[package]
+name = "uvm_jni"
+version = "0.1.0"
+authors = ["Manfred Endres <manfred.endres@tslarusso.de>"]
+description = "A jni wrapper for the unity version manager core library"
+repository = "https://github.com/Larusso/uvm_jni"
+readme = "../README.md"
+keywords = ["unity","version-manager", "java-native"]
+categories = ["development-tools"]
+license = "Apache-2.0"
+[badges]
+travis-ci = { repository = "Larusso/uvm_jni", branch = "master" }
+maintenance = { status = "actively-developed" }
+[dependencies]
+jni = "0.10.2"
+uvm_core = { git = "https://github.com/Larusso/unity-version-manager.git", rev="5fc0ef88ae7679b691e0d657cb2adf78844675be"}
+error-chain = "0.12.0"
+log = "0.4.6"
+
+[lib]
+crate-type = ["cdylib"]
